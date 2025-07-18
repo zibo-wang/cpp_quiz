@@ -1,0 +1,48 @@
+# Build configuration for C++ projects
+
+# Use C++23 standard by default
+build --cxxopt=-std=c++23
+
+# Enable optimizations for release builds
+build:opt --compilation_mode=opt
+build:opt --copt=-O3
+build:opt --copt=-DNDEBUG
+
+# Debug configuration
+build:dbg --compilation_mode=dbg
+build:dbg --copt=-g
+build:dbg --copt=-O0
+
+# Enable warnings (but not -Werror for now to avoid build issues)
+build --copt=-Wall
+build --copt=-Wextra
+
+# LLVM toolchain configuration (registered automatically via MODULE.bazel)
+# The LLVM toolchain will be used automatically
+
+# macOS specific configuration
+build --action_env=CC=clang
+build --action_env=CXX=clang++
+
+# Test configuration
+test --test_output=errors
+test --test_summary=detailed
+
+# Coverage configuration
+coverage --combined_report=lcov
+coverage --coverage_report_generator=@bazel_tools//tools/test:coverage_report_generator
+
+# Remote cache configuration (uncomment if using remote cache)
+# build --remote_cache=...
+
+# Local disk cache
+build --disk_cache=~/.cache/bazel
+
+# Show test output on failure
+test --test_output=errors
+
+# Verbose failures
+build --verbose_failures
+
+# Keep going on test failures
+test --keep_going
