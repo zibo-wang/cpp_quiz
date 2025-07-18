@@ -1,0 +1,147 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-demo-debug",
+            "type": "shell",
+            "command": "bazel",
+            "args": [
+                "build",
+                "//src:demo_debug",
+                "--compilation_mode=dbg",
+                "--strip=never"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build demo_debug target with Bazel"
+        },
+        {
+            "label": "build-q350-debug",
+            "type": "shell",
+            "command": "bazel",
+            "args": [
+                "build",
+                "//src:no_350_debug",
+                "--compilation_mode=dbg",
+                "--strip=never"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build q350_debug target with Bazel"
+        },
+        {
+            "label": "build-tests",
+            "type": "shell",
+            "command": "bazel",
+            "args": [
+                "build",
+                "//src:all_tests",
+                "--compilation_mode=dbg",
+                "--strip=never"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build all test targets with Bazel"
+        },
+        {
+            "label": "build-all-debug",
+            "type": "shell",
+            "command": "bazel",
+            "args": [
+                "build",
+                "//src:demo_debug",
+                "//src:q350_debug",
+                "//src:debug_utils",
+                "--compilation_mode=dbg",
+                "--strip=never"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build all debug targets with Bazel"
+        },
+        {
+            "label": "run-tests",
+            "type": "shell",
+            "command": "bazel",
+            "args": [
+                "test",
+                "//src:all_tests",
+                "--test_output=all"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Run all tests with Bazel"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "bazel",
+            "args": ["clean"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "detail": "Clean Bazel build artifacts"
+        }
+    ]
+}

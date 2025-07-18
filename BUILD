@@ -16,6 +16,45 @@ cc_library(
     visibility = ["//visibility:public"],
 )
 
+# Debug build configuration with debugging symbols and no optimization
+cc_library(
+    name = "debug_flags",
+    hdrs = [],
+    copts = [
+        "-std=c++23",
+        "-Wall",
+        "-Wextra",
+        "-g3",  # Maximum debug information
+        "-O0",  # No optimization for better debugging
+        "-DDEBUG",  # Debug macro
+        "-fno-omit-frame-pointer",  # Keep frame pointers for better stack traces
+        "-fno-optimize-sibling-calls",  # Better stack traces
+    ],
+    linkopts = [
+        "-g",  # Debug symbols in linker
+    ],
+    visibility = ["//visibility:public"],
+)
+
+# Release build with debug symbols (for production debugging)
+cc_library(
+    name = "release_debug_flags",
+    hdrs = [],
+    copts = [
+        "-std=c++23",
+        "-Wall",
+        "-Wextra",
+        "-g1",  # Minimal debug information
+        "-O2",  # Optimized but with debug info
+        "-DNDEBUG",  # Release macro
+        "-fno-omit-frame-pointer",  # Keep frame pointers for stack traces
+    ],
+    linkopts = [
+        "-g",
+    ],
+    visibility = ["//visibility:public"],
+)
+
 # Alias for all components (will be populated as we add components)
 filegroup(
     name = "all_components",
